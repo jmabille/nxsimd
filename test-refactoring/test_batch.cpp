@@ -284,14 +284,17 @@ protected:
 
     void test_comparison() const
     {
+        std::cout << "operator==(batch)" << std::endl;
         // batch == batch
         {
             bool_array_type expected;
             std::transform(lhs.cbegin(), lhs.cend(), rhs.cbegin(), expected.begin(),
                             [](const value_type& l, const value_type& r) { return l == r; });
             auto res = batch_lhs() == batch_rhs();
+            std::cout << "res computed" << std::endl;
             EXPECT_BATCH_EQ(res, expected) << print_function_name("batch == batch");
         }
+        std::cout << "operator==(scalar)" << std::endl;
         // batch == scalar
         {
             bool_array_type expected;
@@ -300,6 +303,7 @@ protected:
             auto res = batch_lhs() == scalar;
             EXPECT_BATCH_EQ(res, expected) << print_function_name("batch == scalar");
         }
+        std::cout << "operator!=(batch)" << std::endl;
         // batch != batch
         {
             bool_array_type expected;
@@ -308,6 +312,7 @@ protected:
             auto res = batch_lhs() != batch_rhs();
             EXPECT_BATCH_EQ(res, expected) << print_function_name("batch != batch");
         }
+        std::cout << "operator!=(scalar)" << std::endl;
         // batch != scalar
         {
             bool_array_type expected;
@@ -316,6 +321,7 @@ protected:
             auto res = batch_lhs() != scalar;
             EXPECT_BATCH_EQ(res, expected) << print_function_name("batch != scalar");
         }
+        std::cout << "operator<(batch)" << std::endl;
         // batch < batch
         {
             bool_array_type expected;
@@ -324,6 +330,7 @@ protected:
             auto res = batch_lhs() < batch_rhs();
             EXPECT_BATCH_EQ(res, expected) << print_function_name("batch < batch");
         }
+        std::cout << "operator<(scalar)" << std::endl;
         // batch < scalar
         {
             bool_array_type expected;
@@ -332,6 +339,7 @@ protected:
             auto res = batch_lhs() < scalar;
             EXPECT_BATCH_EQ(res, expected) << print_function_name("batch < scalar");
         }
+        std::cout << "operator<=(batch)" << std::endl;
         // batch <= batch
         {
             bool_array_type expected;
@@ -340,6 +348,7 @@ protected:
             auto res = batch_lhs() <= batch_rhs();
             EXPECT_BATCH_EQ(res, expected) << print_function_name("batch <= batch");
         }
+        std::cout << "operator<=(scalar)" << std::endl;
         // batch <= scalar
         {
             bool_array_type expected;
@@ -348,6 +357,7 @@ protected:
             auto res = batch_lhs() <= scalar;
             EXPECT_BATCH_EQ(res, expected) << print_function_name("batch <= scalar");
         }
+        std::cout << "operator>(batch)" << std::endl;
         // batch > batch
         {
             bool_array_type expected;
@@ -356,6 +366,7 @@ protected:
             auto res = batch_lhs() > batch_rhs();
             EXPECT_BATCH_EQ(res, expected) << print_function_name("batch > batch");
         }
+        std::cout << "operator>(scalar)" << std::endl;
         // batch > scalar
         {
             bool_array_type expected;
@@ -364,6 +375,7 @@ protected:
             auto res = batch_lhs() > scalar;
             EXPECT_BATCH_EQ(res, expected) << print_function_name("batch > scalar");
         }
+        std::cout << "operator>=(batch)" << std::endl;
         // batch >= batch
         {
             bool_array_type expected;
@@ -372,6 +384,7 @@ protected:
             auto res = batch_lhs() >= batch_rhs();
             EXPECT_BATCH_EQ(res, expected) << print_function_name("batch >= batch");
         }
+        std::cout << "operator>=(scalar)" << std::endl;
         // batch >= scalar
         {
             bool_array_type expected;

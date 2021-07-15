@@ -603,11 +603,18 @@ namespace xsimd
         template <class A, class T, detail::exclude_int64_arm7_t<T> = 0>
         batch_bool<T, A> eq(batch<T, A> const& lhs, batch<T, A> const& rhs, requires<arm7>)
         {
+            std::cout << "entering eq dispatcher" << std::endl;
             using register_type = typename batch<T, A>::register_type;
             constexpr detail::excluding_int64_comp_dispatcher::binary dispatcher =
             {
                 std::make_tuple(vceqq_u8, vceqq_s8, vceqq_u16, vceqq_s16, vceqq_u32, vceqq_s32, vceqq_f32)
             };
+            int64_t hlhs[2];
+            memcpy(hlhs, &lhs, 16);
+            std::cout << std::hex << hlhs[0] << hlhs[1] << std::endl;
+            int64_t hrhs[2];
+            memcpy(hrhs, &rhs, 16);
+            std::cout << std::hex << hrhs[0] << hrhs[1] << std::endl;
             return dispatcher.run(register_type(lhs), register_type(rhs));
         }
 
