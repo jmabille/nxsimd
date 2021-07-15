@@ -292,6 +292,9 @@ protected:
                             [](const value_type& l, const value_type& r) { return l == r; });
             auto res = batch_lhs() == batch_rhs();
             std::cout << "res computed" << std::endl;
+            uint64_t hout[2];
+            memcpy(hout, &res, 16);
+            std::cout << std::hex << hout[0] << hout[1] << std::endl;
             EXPECT_BATCH_EQ(res, expected) << print_function_name("batch == batch");
         }
         std::cout << "operator==(scalar)" << std::endl;
